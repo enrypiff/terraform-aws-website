@@ -4,16 +4,52 @@ This Terraform module allows you to easily deploy a static website using CloudFr
 
 ## Usage
 
-1. **Clone or Copy the Module**
+1. **Clone the repositiry**
 
-   Clone or copy this module to your local machine or include it from a source repository.
+   Clone the repository to your local machine.
 
-2. **Modify Input Variables**
+2. **Set up an account on AWS**
+    You need to have an accounto on AWS and otherwise create one.
+    After, in section IAM you need to have a user with the following policies:
 
-   Update the input variables in your main Terraform configuration file (e.g., `main.tf`) to match your specific requirements:
+    **AmazonS3FullAccess**    
+    **CloudFrontFullAccess**
 
-3. Run `terraform init`` to initialize your configuration.
+3. **Configure AWS CLI**
 
-4. Run `terraform plan`` to see the planned changes before applying.
+    You need to have aws CLI installed. You can follow the istructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
-5. Run `terraform apply`` to create the AWS resources.
+    You need to have an account on AWS and in the 
+  
+    To register a user on the AWS CLI, you can use the following command:
+
+    ```
+    aws configure
+    ```
+
+    This command will prompt you to enter your AWS Access Key ID, AWS Secret Access Key, default region name, and default output format. Once you have provided this information, the user will be registered and you can proceed with the rest of the steps.
+
+    Remember to replace the placeholders with the actual values for your AWS account.
+
+4. **Initialize your configuration**
+    ```
+    terraform init
+    ```
+
+5. **To see the planned changes before applying**
+    ```
+    terraform plan
+    ```
+
+6. **Create the AWS resources**
+    ```
+    terraform apply
+    ```
+
+7. **You will be asked to enter some variables**
+
+    bucket-name (must be unique across all S3 buckets globally)
+
+    environment (for example prod, dev)
+
+    region (for example eu-north-1, us-east-1)
