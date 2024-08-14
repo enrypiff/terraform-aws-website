@@ -32,10 +32,10 @@ resource "aws_cloudfront_distribution" "site_access" {
     max_ttl                = 86400
     compress               = true
 
-    function_association {
-      event_type   = "viewer-request"
-      function_arn = aws_cloudfront_function.url_rewrite.arn
-    }
+    # function_association {
+    #   event_type   = "viewer-request"
+    #   function_arn = aws_cloudfront_function.url_rewrite[0].arn
+    # }
   }
 
   restrictions {
@@ -63,30 +63,35 @@ resource "aws_cloudfront_origin_access_control" "site_access" {
 
 
 
+# Check if the CloudFront function already exists
+# data "aws_cloudfront_function" "existing_url_rewrite" {
+#   name = "url-rewrite"
+#   stage = "LIVE"
+# }
 
 
-
-# CloudFront Function for URL rewriting
-resource "aws_cloudfront_function" "url_rewrite" {
-  name    = "url-rewrite"
-  runtime = "cloudfront-js-1.0"
-  comment = "URL rewrite function"
-  publish = true
-  code    = <<EOF
-function handler(event) {
-    var request = event.request;
-    var uri = request.uri;
+# # CloudFront Function for URL rewriting
+# resource "aws_cloudfront_function" "url_rewrite" {
+#   count   = length(data.aws_cloudfront_function.existing_url_rewrite.id) == 0 ? 1 : 0
+#   name    = "url-rewrite"
+#   runtime = "cloudfront-js-1.0"
+#   comment = "URL rewrite function"
+#   publish = true
+#   code    = <<EOF
+# function handler(event) {
+#     var request = event.request;
+#     var uri = request.uri;
     
-    // Check whether the URI is missing a file name.
-    if (uri.endsWith('/')) {
-        request.uri += 'index.html';
-    } 
-    // Check whether the URI is missing a file extension.
-    else if (!uri.includes('.')) {
-        request.uri += '/index.html';
-    }
+#     // Check whether the URI is missing a file name.
+#     if (uri.endsWith('/')) {
+#         request.uri += 'index.html';
+#     } 
+#     // Check whether the URI is missing a file extension.
+#     else if (!uri.includes('.')) {
+#         request.uri += '/index.html';
+#     }
     
-    return request;
-}
-EOF
-}
+#     return request;
+# }
+# EOF
+# }

@@ -1,13 +1,19 @@
+provider "aws" {
+  region = var.region
+  alias  = "aws_cloudfront"
+}
+
 # S3 Bucket
 resource "aws_s3_bucket" "site_origin" {
+  provider = aws.aws_cloudfront
   bucket = var.bucket_name
-
   tags = {
     Environment = var.environment
   }
 }
 
 resource "aws_s3_bucket_versioning" "site_origin" {
+  provider = aws.aws_cloudfront
   bucket = aws_s3_bucket.site_origin.id
   versioning_configuration {
     status = "Enabled"
@@ -15,6 +21,7 @@ resource "aws_s3_bucket_versioning" "site_origin" {
 }
 
 resource "aws_s3_bucket_public_access_block" "site_origin" {
+  provider = aws.aws_cloudfront
   bucket = aws_s3_bucket.site_origin.id
 
   block_public_acls       = true
@@ -24,6 +31,7 @@ resource "aws_s3_bucket_public_access_block" "site_origin" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "site_origin" {
+  provider = aws.aws_cloudfront
   bucket = aws_s3_bucket.site_origin.id
 
   rule {
@@ -35,6 +43,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "site_origin" {
 
 # Upload file to S3 bucket
 resource "aws_s3_object" "content" {
+  provider = aws.aws_cloudfront
   bucket                 = aws_s3_bucket.site_origin.id
   key                    = "index.html"
   source                 = "./src/index.html"
@@ -66,6 +75,7 @@ data "aws_iam_policy_document" "s3_policy" {
 }
 
 resource "aws_s3_bucket_policy" "site_origin" {
+  provider = aws.aws_cloudfront
   bucket = aws_s3_bucket.site_origin.id
   policy = data.aws_iam_policy_document.s3_policy.json
 }
