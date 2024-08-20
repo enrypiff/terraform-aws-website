@@ -53,3 +53,10 @@ This Terraform module allows you to easily deploy a static website using CloudFr
     environment (for example prod, dev)
 
     region (for example eu-north-1, us-east-1)
+
+   ![image](https://github.com/user-attachments/assets/e241fefe-a1c4-42dd-bda4-2a6b7d5a8ae9)
+
+   After it is deployed you will get the ulr to access
+
+   ![image](https://github.com/user-attachments/assets/10ac1436-ae86-4b3b-a541-9551aed352f2)
+
