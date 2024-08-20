@@ -56,7 +56,10 @@ This Terraform module allows you to easily deploy a static website using CloudFr
 
    ![image](https://github.com/user-attachments/assets/e241fefe-a1c4-42dd-bda4-2a6b7d5a8ae9)
 
-   After it is deployed you will get the ulr to access
+   After it is deployed you will get the url to access
 
    ![image](https://github.com/user-attachments/assets/10ac1436-ae86-4b3b-a541-9551aed352f2)
+
+   ![image](https://github.com/user-attachments/assets/c35c93a7-26db-44da-90ce-690a42478aa1)
+
 
