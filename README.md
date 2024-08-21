@@ -8,16 +8,19 @@ This Terraform module allows you to easily deploy a static website using CloudFr
 
    Clone the repository to your local machine.
 
-2. **Set up an account on AWS**
-    You need to have an accounto on AWS and otherwise create one.
+2. **Install Terraform**
+    You can follow the instructions [here](https://developer.hashicorp.com/terraform/install)
+
+3. **Set up an account on AWS**
+    You need to have an account on AWS and otherwise create one. [AWS](https://aws.amazon.com)
     After, in section IAM you need to have a user with the following policies:
 
     **AmazonS3FullAccess**    
     **CloudFrontFullAccess**
 
-3. **Configure AWS CLI**
+4. **Configure AWS CLI**
 
-    You need to have aws CLI installed. You can follow the istructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+    You need to have aws CLI installed. You can follow the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
     You need to have an account on AWS and in the 
   
@@ -31,22 +34,22 @@ This Terraform module allows you to easily deploy a static website using CloudFr
 
     Remember to replace the placeholders with the actual values for your AWS account.
 
-4. **Initialize your configuration**
+5. **Initialize your configuration**
     ```
     terraform init
     ```
 
-5. **To see the planned changes before applying**
+6. **To see the planned changes before applying**
     ```
     terraform plan
     ```
 
-6. **Create the AWS resources**
+7. **Create the AWS resources**
     ```
     terraform apply
     ```
 
-7. **You will be asked to enter some variables**
+8. **You will be asked to enter some variables**
 
     bucket-name (must be unique across all S3 buckets globally)
 
